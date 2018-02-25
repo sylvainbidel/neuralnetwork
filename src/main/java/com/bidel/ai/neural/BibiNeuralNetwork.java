@@ -1,16 +1,23 @@
 package com.bidel.ai.neural;
 
+import com.bidel.ai.data.Sample;
 import com.bidel.ai.data.Dataset;
 
 import java.util.List;
+import java.util.Vector;
 import java.util.stream.Collectors;
 
 public class BibiNeuralNetwork implements NeuralNetwork {
+    private double alpha=1;
 
+    public BibiNeuralNetwork(double alpha) {
+        this.alpha = alpha;
+        layers=new Vector<>();
+    }
 
     @Override
     public double[] output(double[] data) {
-
+        List<Cell> outputLayer=layers.get(0).getCells();
         List<Double> res=outputLayer.stream().map(n->n.out(data)).collect(Collectors.toList());
         double[] res1=new double[outputLayer.size()];
         for (int i = 0; i < res.size(); i++) {
@@ -23,16 +30,19 @@ public class BibiNeuralNetwork implements NeuralNetwork {
 
     @Override
     public void learn(Dataset dataset) {
+        List<Sample> samples =dataset.getSamples();
+        for (int i = 0; i < samples.size(); i++) {
+            Sample sample = samples.get(i);
+            double[] y=output(sample.getX());
+
+
+        }
 
     }
 
-    List<Neural> outputLayer;
+    List<Layer> layers;
 
-    public List<Neural> getOutputLayer() {
-        return outputLayer;
-    }
-
-    public void setOutputLayer(List<Neural> outputLayer) {
-        this.outputLayer = outputLayer;
+    public void addLayer(Layer layer) {
+        layers.add(layer);
     }
 }

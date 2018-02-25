@@ -1,26 +1,13 @@
 package com.bidel.ai.neural;
 
 public class ParamNetwork {
-    int nbOutput;
-    int nbLayer1;
-    int nbLayer2;
-    int nbInput;
+    int[] dimensions;
 
-    public ParamNetwork(int nbOutput, int nbLayer1, int nbLayer2, int nbInput) {
-        this.nbOutput = nbOutput;
-        this.nbLayer1 = nbLayer1;
-        this.nbLayer2 = nbLayer2;
-        this.nbInput = nbInput;
+    public ParamNetwork(int[] dimensions) {
+        this.dimensions = dimensions;
     }
 
-    public int getNb(Unit.LAYER layer) {
-        switch (layer) {
-            case OUTPUT:return nbOutput;
-            case HIDDEN_1:return nbLayer1;
-            case HIDDEN_2:return nbLayer2;
-            case INPUT:return nbInput;
-            default:return 0;
-        }
-
+    public int getNbCells(int layer) {
+        return dimensions[layer];
     }
 }

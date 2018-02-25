@@ -3,13 +3,15 @@ package com.bidel.ai.neural;
 import java.util.Random;
 
 public class Connection {
-    public Connection(Unit unit) {
-        this.unit = unit;
-        weight=new Random().nextInt(10);
+    public Connection(Cell cell1, Cell cell2) {
+        this.cell1 = cell1;
+        this.cell2 = cell2;
+        weight=new Random().nextDouble();
     }
 
     private double weight;
-    private Unit unit;
+    private Cell cell1;
+    private Cell cell2;
 
     public double getWeight() {
         return weight;
@@ -19,11 +21,19 @@ public class Connection {
         this.weight = weight;
     }
 
-    public Unit getUnit() {
-        return unit;
+    public Cell getCell1() {
+        return cell1;
     }
 
-    public void setUnit(Neural unit) {
-        this.unit = unit;
+    public void setCell1(Cell cell1) {
+        this.cell1 = cell1;
+    }
+
+    public Cell getCell2() {
+        return cell2;
+    }
+
+    public void setCell2(Cell cell2) {
+        this.cell2 = cell2;
     }
 }
